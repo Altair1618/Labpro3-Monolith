@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Riwayat;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
 class BarangController extends Controller
 {
-    private $baseAPIUrl = 'http://localhost:5000';
-
+    
     public function showCatalog(Request $request)
     {
+        $baseAPIUrl = env('BARANG_API_URL', 'http://localhost:5000');
         $endpoint = '/barang';
 
         try {
@@ -21,9 +20,9 @@ class BarangController extends Controller
                     'q' => $request->input('q')
                 ];
 
-                $response = Http::get($this->baseAPIUrl . $endpoint, $param);
+                $response = Http::get($baseAPIUrl . $endpoint, $param);
             } else {
-                $response = Http::get($this->baseAPIUrl . $endpoint);
+                $response = Http::get($baseAPIUrl . $endpoint);
             }
         } catch (\Throwable $th) {
             return view('katalog', [
@@ -56,10 +55,11 @@ class BarangController extends Controller
 
     public function showBarangDetail(Request $request, $id)
     {
+        $baseAPIUrl = env('BARANG_API_URL', 'http://localhost:5000');
         $endpoint = '/barang/' . $id;
 
         try {
-            $response = Http::get($this->baseAPIUrl . $endpoint);
+            $response = Http::get($baseAPIUrl . $endpoint);
         } catch (\Throwable $th) {
             abort(500);
         }
@@ -79,10 +79,11 @@ class BarangController extends Controller
 
     public function showBarangBuyPage(Request $request, $id)
     {
+        $baseAPIUrl = env('BARANG_API_URL', 'http://localhost:5000');
         $endpoint = '/barang/' . $id;
 
         try {
-            $response = Http::get($this->baseAPIUrl . $endpoint);
+            $response = Http::get($baseAPIUrl . $endpoint);
         } catch (\Throwable $th) {
             abort(500);
         }
@@ -101,10 +102,11 @@ class BarangController extends Controller
     }
 
     public function buyBarang(Request $request, $id) {
+        $baseAPIUrl = env('BARANG_API_URL', 'http://localhost:5000');
         $endpoint = '/buy/' . $id;
 
         try {
-            $response = Http::post($this->baseAPIUrl . $endpoint, [
+            $response = Http::post($baseAPIUrl . $endpoint, [
                 'jumlah' => $request->input('jumlah')
             ]);
         } catch (\Throwable $th) {
