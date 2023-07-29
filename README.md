@@ -20,6 +20,12 @@ Strategy is a design pattern that allows us to change the algorithm of an object
 ## Bonus
 1. This project is deployed on 000webhost and can be accessed [here](https://labpro3-monolith.000webhostapp.com/login).
 2. Every page in this project has lighthouse score more than equal to 95.
+![Register Page](./lighthouse/RegisterPage.png)
+![Login Page](./lighthouse/LoginPage.png)
+![Catalog Page](./lighthouse/Catalog.png)
+![Detail Page](./lighthouse/Detail.png)
+![Buy Page](./lighthouse/BuyPage.png)
+![History Page](./lighthouse/Riwayat.png)
 3. Every page in this project has responsive layout so that it can be accessed from mobile devices and computers.
 4. The catalog page in this project has short poll feature to update the data every 10 seconds without refreshing the page.
 
