@@ -19,24 +19,16 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['validator'], 'namespace' => 'App\Http\Controllers'], function() {
-
     Route::get('/catalog', 'BarangController@showCatalog')->name('catalog');
-    
     Route::get('/catalog/{id}', 'BarangController@showBarangDetail')->name('catalog.detail');
-    
     Route::get('/buy/{id}', 'BarangController@showBarangBuyPage')->name('catalog.buy');
-    
-    Route::get('/history', 'RiwayatController@showRiwayat')->name('history');
-
     Route::post('/buy/{id}', 'BarangController@buyBarang')->name('catalog.buy.post');
-    
+    Route::get('/history', 'RiwayatController@showRiwayat')->name('history');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers'], function() {
     Route::post('/login', 'AuthController@login')->name('auth.login');
     Route::post('/logout', 'AuthController@logout')->name('auth.logout');
-    Route::post('/me', 'AuthController@me')->name('auth.me');
-
     Route::post('/register', 'UserController@register')->name('user.register');
 });
 
@@ -51,8 +43,3 @@ Route::get('/login', function () {
         "title" => "Login"
     ]);
 })->name('login');
-
-
-Route::get('/laravel', function () {
-    return view('welcome');
-});

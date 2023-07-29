@@ -124,7 +124,7 @@ class BarangController extends Controller
         ]);
 
         if ($response->successful()) {
-            return redirect()->route('catalog.detail', ['id' => $id]);
+            return redirect()->route('history', ['id' => $id]);
         } else {
             abort(500);
         }

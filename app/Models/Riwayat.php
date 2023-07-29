@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\RiwayatQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,4 +29,8 @@ class Riwayat extends Model
         'jumlah',
         'kode',
     ];
+
+    public function newEloquentBuilder($query) {
+        return new RiwayatQueryBuilder($query);
+    }
 }

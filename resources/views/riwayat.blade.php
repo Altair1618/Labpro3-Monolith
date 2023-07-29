@@ -8,6 +8,7 @@
           <tr>
             <th scope="col">Kode Barang</th>
             <th scope="col">Nama Barang</th>
+            <th scope="col">Jumlah Barang</th>
             <th scope="col">Total Harga</th>
             <th scope="col">Waktu Pembelian</th>
           </tr>
@@ -20,6 +21,9 @@
               </td>
               <td>
                 {{ $item['nama'] }}
+              </td>
+              <td>
+                {{ $item['jumlah'] }}
               </td>
               <td>
                 {{ $item['harga'] * $item['jumlah'] }}

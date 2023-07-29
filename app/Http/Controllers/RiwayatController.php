@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Log;
 class RiwayatController extends Controller
 {
     public function showRiwayat(Request $request) {
-        $riwayat = Riwayat::where('id_user', $request->input('user')->id)
-                  ->orderBy('created_at', 'desc')
-                  ->paginate(10);
+        $riwayat = Riwayat::withUserId($request->input('user')->id)
+                   ->orderByCreationTime('desc')
+                   ->paginate(10);
         
         return view('riwayat', [
             "title" => "Riwayat",

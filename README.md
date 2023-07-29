@@ -1,66 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Labpro 3rd Selection (Monolith)
+A Shopping App built with Laravel developed for Programming Lab Selection. The specification of this app can be seen [here](https://docs.google.com/document/d/1XERd5-yRuU-R7vK4Oe4REnQ4Nm8gL_bvDc37QQ7DoXI/edit).
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Author
+- Farhan Nabil Suryono (13521114)
 
-## About Laravel
+## How To Run
+- Clone this repository
+- Run `docker-compose up` command inside the repository folder
+- Server is started on docker image
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Design Pattern
+1. Design Pattern Builder </br>
+Builder is a design pattern that allows us to create complex objects step by step. In this project, builder pattern is used in query builder. This is done to make the query builder more readable and easier to use. </br>
+2. Design Pattern Chain of Responsibility </br>
+Chain of Responsibility is a design pattern that allows us to divide many process into multiple handlers so that each handler only need to process a specific task. In this project, chain of responsibility is used in middlewares. For instances, middleware Validator is used to validate is the user requesting is authenticated or not. If the user is authenticated, the request will be passed to the next middleware. </br>
+3. Design Pattern Strategy </br>
+Strategy is a design pattern that allows us to change the algorithm of an object at runtime. In this project, strategy is used in creating credentials while authenticating user. For instances, if the user is authenticated using email, the email will be used as the credential, but if the user is authenticated using username, the username will be used as the credential. </br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Bonus
+1. This project is deployed on 000webhost and can be accessed [here](https://labpro3-monolith.000webhostapp.com/login).
+2. Every page in this project has lighthouse score more than equal to 95.
+3. Every page in this project has responsive layout so that it can be accessed from mobile devices and computers.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tech Stacks
+- laravel/framework (v10.10)
+- tymon/jwt-auth (v2.0)
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Endpoints
+<table>
+    <thead>
+        <td>Endpoint</td>
+        <td>Description</td>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET `/`</td>
+            <td>Automatically redirect to `/login` or `/catalog`</td>
+        </tr>
+        <tr>
+            <td>GET `/register`</td>
+            <td>Register Page [ALL]</td>
+        </tr>
+        <tr>
+            <td>POST `/register`</td>
+            <td>Register A New User</td>
+        </tr>
+        <tr>
+            <td>GET `/login`</td>
+            <td>Login Page [ALL]</td>
+        </tr>
+        <tr>
+            <td>POST `/login`</td>
+            <td>Login to System</td>
+        </tr>
+        <tr>
+            <td>POST `/logout</td>
+            <td>Logout from System</td>
+        </tr>
+        <tr>
+            <td>GET `/catalog`</td>
+            <td>Catalog Page [USER]</td>
+        </tr>
+        <tr>
+            <td>GET `/catalog/:id`</td>
+            <td>Item Detail Page [USER]</td>
+        </tr>
+        <tr>
+            <td>GET `/buy/:id`</td>
+            <td>Item Buy Page [USER]</td>
+        </tr>
+        <tr>
+            <td>POST `/buy/:id`</td>
+            <td>Buy an item and add the transaction to history</td>
+        </tr>
+        <tr>
+            <td>GET `/history`</td>
+            <td>Transaction History Page [USER]</td>
+        </tr>
+    </tbody>
+</table>

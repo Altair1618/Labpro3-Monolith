@@ -14,13 +14,7 @@ class AuthController extends Controller
     public function login()
     {
         $identifier = request('identifier');
-        $loginType = filter_var($identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-        if ($loginType == 'email') {
-            $credentials = ['email' => $identifier, 'password' => request('password')];
-        } else {
-            $credentials = ['username' => $identifier, 'password' => request('password')];
-        }
+        $credentials = $this->getCredentials($identifier);
 
         if (!$token = auth()->attempt($credentials)) {
             return redirect()->back()->withErrors(['message' => 'Login failed.']);
@@ -28,15 +22,21 @@ class AuthController extends Controller
         
         return redirect()->intended('/catalog')->withCookie(cookie('token', $token, 3600));
     }
-    
-    public function me()
-    {
-        return response()->json(auth()->user());
-    }
 
     public function logout()
     {
         auth()->logout();
         return redirect()->intended('/login')->withCookie(cookie()->forget('token'));
+    }
+
+    private function getCredentials($identifier)
+    {
+        $loginType = filter_var($identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        if ($loginType == 'email') {
+            return ['email' => $identifier, 'password' => request('password')];
+        } else {
+            return ['username' => $identifier, 'password' => request('password')];
+        }
     }
 }
