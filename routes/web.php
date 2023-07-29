@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['validator'], 'namespace' => 'App\Http\Controllers'], function() {
     Route::get('/catalog', 'BarangController@showCatalog')->name('catalog');
+    Route::get('/catalog/short-poll', 'BarangController@showCatalogShortPoll')->name('catalog.short-poll');
     Route::get('/catalog/{id}', 'BarangController@showBarangDetail')->name('catalog.detail');
     Route::get('/buy/{id}', 'BarangController@showBarangBuyPage')->name('catalog.buy');
     Route::post('/buy/{id}', 'BarangController@buyBarang')->name('catalog.buy.post');

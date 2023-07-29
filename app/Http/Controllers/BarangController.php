@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Riwayat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
 class BarangController extends Controller
@@ -50,6 +51,47 @@ class BarangController extends Controller
                 "user" => $request->input('user'),
                 "data" => []
             ]);
+        }
+    }
+
+    public function showCatalogShortPoll(Request $request)
+    {
+        $baseAPIUrl = env('BARANG_API_URL', 'http://localhost:5000');
+        $endpoint = '/barang';
+
+        try {
+            if ($request->has('q')) {
+                $param = [
+                    'q' => $request->input('q')
+                ];
+
+                $response = Http::get($baseAPIUrl . $endpoint, $param);
+            } else {
+                $response = Http::get($baseAPIUrl . $endpoint);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Something went wrong.'
+            ], 500);
+        }
+
+        if ($response->successful()) {
+            $data = $response->json()['data'];
+
+            usort($data, function ($a, $b) {
+                return strcmp($a['nama'], $b['nama']);
+            });
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $this->paginateArray($data, 10)
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Something went wrong.'
+            ], 500);
         }
     }
 
