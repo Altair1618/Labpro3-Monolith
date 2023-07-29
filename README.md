@@ -6,8 +6,12 @@ A Shopping App built with Laravel developed for Programming Lab Selection. The s
 
 ## How To Run
 - Clone this repository
+- Rename `.env.example` to `.env` and fill the `.env` file with your configuration
 - Run `docker-compose up` command inside the repository folder
-- Server is started on docker image
+- Run `docker exec -it <container-id> sh` command to enter the php container
+- Run `composer install` command to install all dependencies
+- Run `php artisan migrate:fresh` command to migrate all tables
+- Server is started on docker image and can be accessed from `localhost:80`
 
 ## Design Pattern
 1. Design Pattern Builder </br>
